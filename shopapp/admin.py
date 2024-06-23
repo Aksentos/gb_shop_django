@@ -3,6 +3,10 @@ from .models import Product, Order, Client, OrderItem
 from .admin_mixins import ExportAsCSVMixin
 
 
+admin.site.site_header = 'Мой магазин'
+admin.site.site_title = 'Администрирование сайта магазина'
+admin.site.index_title = 'Администрирование сайта магазина'
+
 # Дополнителья обработка в панели администратора при работе с покупителем
 @admin.action(description="Сменить имя на Secret")
 def reset_name(modeladmin, request, queryset):
