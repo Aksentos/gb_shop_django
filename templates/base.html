@@ -12,10 +12,10 @@
     
     <div class="container-fluid">
         <ul class="nav nav-pills justify-content-end align-items-end">
-        <li class="nav-item"><a href='{% url "index" %}'class="nav-link">На главную</a></li>
-        <li class="nav-item"><a href='{% url "about" %}' class="nav-link">О себе</a></li>
-        <li class="nav-item"><a href='{% url "admin:index" %}'>Админка</a></li>
-    </ul>
+            <li class="nav-item"><a href='{% url "index" %}'class="nav-link">На главную</a></li>
+            <li class="nav-item"><a href='{% url "about" %}' class="nav-link">О себе</a></li>
+            <li class="nav-item"><a href='{% url "admin:index" %}' class="nav-link">Админка</a></li>
+        </ul>
     </div>
     <div class="content">
         {% block content %}{% endblock  %}

@@ -3,6 +3,7 @@ from django.urls import path
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("about/", views.about, name="about"),
     # адрес для просмотра всех заказов клиента
     path("orders/<int:client_id>", views.orders, name="orders"),
     # адрес для просмотра всех заказов

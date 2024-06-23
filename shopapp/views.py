@@ -19,6 +19,13 @@ def index(request):
     logger.info("Index page accessed")
     return render(request, "shopapp/index.html", context)
 
+def about(request):
+    context = {
+        "title": "О себе",
+    }
+    logger.info("About page accessed")
+    return render(request, "shopapp/about.html", context)
+
 
 # отображение заказов
 def orders(request, client_id: int = None):
