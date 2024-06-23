@@ -7,7 +7,7 @@ from django.db import models
 class Client(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    phone = models.CharField(max_length=11)
+    phone = models.CharField(max_length=16)
     address = models.CharField(max_length=100)
     register_date = models.DateField(auto_now_add=True)
 
@@ -24,7 +24,7 @@ class Product(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     price = models.DecimalField(
-        max_digits=100, decimal_places=2, default=0, validators=[MinValueValidator(0)]
+        max_digits=11, decimal_places=2, default=0, validators=[MinValueValidator(0)]
     )
     quantity = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
     product_add_date = models.DateField(auto_now_add=True)
@@ -43,7 +43,7 @@ class Order(models.Model):
     buyer = models.ForeignKey(Client, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product, through="OrderItem")
     total_amount = models.DecimalField(
-        max_digits=100, decimal_places=2, default=0, validators=[MinValueValidator(0)]
+        max_digits=64, decimal_places=2, default=0, validators=[MinValueValidator(0)]
     )
     order_date = models.DateTimeField(auto_now_add=True)
 
