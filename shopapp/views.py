@@ -19,6 +19,7 @@ def index(request):
     logger.info("Index page accessed")
     return render(request, "shopapp/index.html", context)
 
+
 def about(request):
     context = {
         "title": "О себе",
@@ -34,6 +35,11 @@ def orders(request, client_id: int = None):
         client = get_object_or_404(Client, id=client_id)
         order = Order.objects.filter(buyer=client)
         today = timezone.now()
+        # список обработки количества товара в заказе
+        quantities = []
+        for ord in order:
+            for item in ord.orderitem_set.all():
+                quantities.append(item.quantity)
 
         # Заказы клиента за период времени
         order_week = order.filter(order_date__gte=today - timedelta(days=7))
@@ -52,9 +58,10 @@ def orders(request, client_id: int = None):
         }
 
         context = {
-            "title": f"Список заказов клиента {client.name}",
+            "title": f"Список заказов покупателя {client.name}",
             "client": client,
             "order": order,
+            'quantities': quantities[::-1],
             "products_week": products_week,
             "products_month": products_month,
             "products_year": products_year,

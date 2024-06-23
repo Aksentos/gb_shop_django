@@ -21,14 +21,14 @@
                         {% endif %}
                         <div class="card-body">
                           <h5 class="card-title">{{ product.title }}</h5>
-                          <p class="card-text"> Цена: {{ product.price }}$</p>
-                          <p class="card-text"> Количество: {{ product.quantity }}$</p>
+                          <p class="card-text"> Цена: {{ product.price }}₽</p>
+                          <p class="card-text"> Количество: {{ quantities.pop }}</p>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
-            <p>Сумма заказа: {{ ord.total_amount }}$</p>
+            <p>Сумма заказа: {{ ord.total_amount }}₽</p>
             <p>Дата заказа: {{ ord.order_date }}</p>
             <hr>
             <br>
@@ -46,15 +46,37 @@
             {{ product.title }} <br>
         {% endfor %}     
     {% else %}
-        <ul>
+       
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Покупатель</th>
+                <th scope="col">Сумма заказа</th>
+                <th scope="col">Дата заказа</th>
+            </tr>
+        </thead>
+        <tbody>
             {% for ord in order %} 
-                <h3>Клиент <a href='{% url "orders" ord.buyer.id %}'>{{ ord.buyer }}</a></h3>
-                <li>Сумма заказа: {{ ord.total_amount }}$</li>
-                <li>Дата заказа: {{ ord.order_date }}</li>
-                <hr>
-                <br>
+                <tr>
+                    <th scope="row">{{ ord.id }}</th>
+                    <td><a href='{% url "orders" ord.buyer.id %}'>{{ ord.buyer }}</a></td>
+                    <td>{{ ord.total_amount }}₽</td>
+                    <td>{{ ord.order_date }}</td>
+                </tr>
             {% endfor %}
-        </ul>
+        </tbody>
+    </table>
+
+
+                {% comment %} <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item"><h4>Клиент <a href='{% url "orders" ord.buyer.id %}'>{{ ord.buyer }}</a></h4></li>
+                    <li class="list-group-item">Сумма заказа: {{ ord.total_amount }}₽</li>
+                    <li class="list-group-item">Дата заказа: {{ ord.order_date }}</li>
+                </ul> {% endcomment %}
+         
+            
+        
     {% endif %}
 </div>
 
