@@ -84,7 +84,6 @@ WSGI_APPLICATION = "shop_project.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
         "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "gbshopdjango$default",  # <your_username>$<your_database_name>
@@ -95,7 +94,6 @@ DATABASES = {
             "init_command": "SET NAMES 'utf8mb4';SET sql_mode='STRICT_TRANS_TABLES'",
             "charset": "utf8mb4",
         },
-    }
     }
 }
 
